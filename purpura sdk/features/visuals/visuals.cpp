@@ -109,7 +109,7 @@ void features::visuals::render_weapon(esp_box box, int entity_index) {
 
 	int difference = thing.left / 2;
 
-	render_manager::text(weapon_name.c_str(), (box.x + box.w / 2) - difference, box.y + box.h + 15, render_manager::fonts::esp_font, c_config::visuals::esp_weapon_colour);
+	render_manager::text(weapon_name.c_str(), (box.x + box.w / 2) - difference, box.y + box.h + 2, render_manager::fonts::esp_font, c_config::visuals::esp_weapon_colour);
 }
 
 void features::visuals::render_name(esp_box box, int entity_index) {
