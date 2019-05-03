@@ -40,7 +40,9 @@ enum class_ids {
 	CBreachChargeProjectile,
 	CBreakableProp,
 	CBreakableSurface,
-	Bomb,
+	CBumpMine,
+	CBumpMineProjectile,
+	CC4,
 	CCascadeLight,
 	CChicken,
 	CColorCorrection,
@@ -136,6 +138,7 @@ enum class_ids {
 	CPhysPropWeaponUpgrade,
 	CPlantedC4,
 	CPlasma,
+	CPlayerPing,
 	CPlayerResource,
 	CPointCamera,
 	CPointCommentaryNode,
@@ -163,6 +166,9 @@ enum class_ids {
 	CSmokeGrenade,
 	CSmokeGrenadeProjectile,
 	CSmokeStack,
+	CSnowball,
+	CSnowballPile,
+	CSnowballProjectile,
 	CSpatialEntity,
 	CSpotlightEnd,
 	CSprite,
@@ -267,6 +273,7 @@ enum class_ids {
 	CWeaponSG550,
 	CWeaponSG552,
 	CWeaponSG556,
+	CWeaponShield,
 	CWeaponSSG08,
 	CWeaponTaser,
 	CWeaponTec9,
@@ -282,7 +289,7 @@ enum class_ids {
 	RocketTrail,
 	SmokeTrail,
 	SporeExplosion,
-	SporeTrail,
+	SporeTrail
 };
 
 class c_client_class {
