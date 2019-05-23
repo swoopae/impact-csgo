@@ -1,7 +1,5 @@
 #include "render_manager.h"
 
-// NOAPTEEAAAAAAAAAAAAAA MA INNEC INTRUN OCEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN
-
 namespace render_manager {
 	namespace fonts {
 		DWORD others_font;
@@ -57,22 +55,13 @@ void render_manager::horizontal_gradient_rect(int x, int y, int w, int h, color 
 	interfaces::surface->draw_filled_rect_fade(x, y, w, h, 0, 255, true);
 }
 
-wchar_t* wide_buffer = new wchar_t[1024];
-
 void render_manager::text(const char* text, int x, int y, int font, color color) {
-	char buffer[1024] = { '\0' };
-	va_list arguments;
-
-	va_start(arguments, text);
-	vsprintf_s(buffer, text, arguments);
-	va_end(arguments);
-
-	size_t size_nigga = strlen(buffer) + 1;
-
-	mbstowcs_s(0, wide_buffer, size_nigga, buffer, size_nigga - 1);
-
+	std::string text_normal = text;
+	std::wstring text_wide = std::wstring(text_normal.begin(), text_normal.end());
+	const wchar_t* final_text = text_wide.c_str(); 
+	
 	interfaces::surface->draw_set_text_color(color.r, color.g, color.b, color.a);
 	interfaces::surface->draw_set_text_font(font);
 	interfaces::surface->draw_set_text_pos(x, y);
-	interfaces::surface->draw_print_text(wide_buffer, size_nigga - 1, FONT_DRAW_DEFAULT);
+	interfaces::surface->draw_print_text(final_text, wcslen(final_text), FONT_DRAW_DEFAULT);
 }
