@@ -36,12 +36,12 @@ void c_menu::color_selector(std::string name, color * colour) {
 	render_manager::filled_rect(x_position, y_position, 23, 11, color(colour->r, colour->g, colour->b, colour->a));
 
 	if (menu.menu_opened) {
-		if (GetAsyncKeyState(VK_LBUTTON) && mouse_in_params(x_position - 1, y_position - 1, 25, 13)) {
+		if (GetAsyncKeyState(VK_LBUTTON) && mouse_in_params(x_position - 1, y_position - 1, 25, 13) && !click_rest) {
 			name_selected = name;
 			pressed = true;
 			click_rest = true;
 		}
-		else if (GetAsyncKeyState(VK_LBUTTON) && mouse_in_params(x_position - 1, y_position - 1, 25, 13)) {
+		else if (!GetAsyncKeyState(VK_LBUTTON) && mouse_in_params(x_position - 1, y_position - 1, 25, 13)) {
 			click_rest = false;
 		}
 		if (pressed)
