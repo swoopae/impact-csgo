@@ -63,57 +63,17 @@ void c_menu::color_selector(std::string name, color * colour) {
 		spectrum(x_position + 25, y_position - 4, 68, 68); // draw spectrum
 
 		// handle input
-		if (GetAsyncKeyState(VK_LBUTTON) && mouse_in_params(x_position + 27, y_position - 4 + 3, 60, 60)) { // idk should work right???
-			int x_in_spectrum = ((int)menu.mouse_pos().x) % (x_position + 27), y_in_spectrum = ((int)menu.mouse_pos().y) % (y_position - 1);
-			int spectrum_width = 64;
+		if (GetAsyncKeyState(VK_LBUTTON) && mouse_in_params(x_position + 27, y_position - 4 + 3, 60, 60)) {
+			
+			HDC hdc = GetDC(nullptr); 
 
-			int thing;
+			COLORREF selected_colour;
+			selected_colour = GetPixel(hdc, mouse_pos().x, mouse_pos().y);
 
-			if (y_in_spectrum % 10 == 0)
-				thing = 10;
-			else thing = y_in_spectrum % 10;
-
-			float difference_almost_faded_color_to_255 = 255.f - (25.5f * (thing));
-			float remaining_to_new_shit = difference_almost_faded_color_to_255 / 60.f;
-
-			// buggy but idc rn
-
-			if (y_in_spectrum <= 10) {
-				colour->r = 255.f;
-				colour->g = (25.5f * (y_in_spectrum)) + (remaining_to_new_shit * x_in_spectrum);
-				colour->b = 4.25f * x_in_spectrum;
-				colour->a = 255.f;
-			}
-			else if (y_in_spectrum > 10 && y_in_spectrum <= 20) {
-				colour->r = 255.f - ((25.5f * (y_in_spectrum)) + (remaining_to_new_shit * x_in_spectrum));
-				colour->g = 255.f;
-				colour->b = 4.25f * x_in_spectrum;
-				colour->a = 255.f;
-			}
-			else if (y_in_spectrum > 20 && y_in_spectrum <= 30) {
-				colour->r = 4.25f * x_in_spectrum;
-				colour->g = 255.f;
-				colour->b = (25.5f * (y_in_spectrum)) + (remaining_to_new_shit * x_in_spectrum);
-				colour->a = 255.f;
-			}
-			else if (y_in_spectrum > 30 && y_in_spectrum <= 40) {
-				colour->r = 4.25f * x_in_spectrum;
-				colour->g = 255.f - ((25.5f * (y_in_spectrum)) + (remaining_to_new_shit * x_in_spectrum));
-				colour->b = 255.f;
-				colour->a = 255.f;
-			}
-			else if (y_in_spectrum > 40 && y_in_spectrum <= 50) {
-				colour->r = (25.5f * (y_in_spectrum)) + (remaining_to_new_shit * x_in_spectrum);
-				colour->g = 4.25f * x_in_spectrum;
-				colour->b = 255.f;
-				colour->a = 255.f;
-			}
-			else if (y_in_spectrum > 50 && y_in_spectrum <= 60) {
-				colour->r = 255.f;
-				colour->g = 4.25f * x_in_spectrum;
-				colour->b = 255.f - ((25.5f * (y_in_spectrum)) + (remaining_to_new_shit * x_in_spectrum));
-				colour->a = 255.f;
-			}
+			colour->r = GetRValue(selected_colour);
+			colour->g = GetGValue(selected_colour);
+			colour->b = GetBValue(selected_colour);
+			colour->a = 255.f;
 		}
 	}
 }
