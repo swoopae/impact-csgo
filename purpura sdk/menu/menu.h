@@ -40,16 +40,13 @@ private:
 	void keybind(int &item, std::string name);
 	void text(std::string text_to_write);
 
-	RECT get_text_size(DWORD font, const char* text, ...)
-	{
-		size_t origsize = strlen(text) + 1;
-		const size_t newsize = 100;
-		size_t convertedChars = 0;
-		wchar_t wcstring[newsize];
-		mbstowcs_s(&convertedChars, wcstring, origsize, text, _TRUNCATE);
+	RECT get_text_size(DWORD font, const char* text, ...) {	
+		std::string text_normal = text;
+		std::wstring text_wide = std::wstring(text_normal.begin(), text_normal.end());
+		const wchar_t* final_text = text_wide.c_str(); 
 
 		RECT rect; int x, y;
-		interfaces::surface->get_text_size(font, wcstring, x, y);
+		interfaces::surface->get_text_size(font, final_text, x, y);
 		rect.left = x; rect.bottom = y;
 		rect.right = x;
 		return rect;
