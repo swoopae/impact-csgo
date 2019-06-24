@@ -36,46 +36,16 @@ void features::miscellaneous::clantag_spam() {
 	if (!c_config::misc::clantag_changer)
 		return;
 
-	int server_time = ((float)interfaces::global_vars->interval_per_tick * global_variables::local_player->tickbase());
-	static int counter = 0;
-	int value = server_time % 30;
+	static std::string cur_clantag = " impacthack " ;
+	static float oldtime;
 
-	if (counter % 19 == 0) {
-		switch (value)
-		{
-		case 0:global_utils::set_clantag(" ", "[redacted]"); break;
-		case 1:global_utils::set_clantag("n ", "[redacted]"); break;
-		case 2:global_utils::set_clantag("ne ", "[redacted]"); break;
-		case 3:global_utils::set_clantag("net ", "[redacted]"); break;
-		case 4:global_utils::set_clantag("netf ", "[redacted]"); break;
-		case 5:global_utils::set_clantag("netfl ", "[redacted]"); break;
-		case 6:global_utils::set_clantag("netfli ", "[redacted]"); break;
-		case 7:global_utils::set_clantag("netflix ", "[redacted]"); break;
-		case 8:global_utils::set_clantag("netflix& ", "[redacted]"); break;
-		case 9:global_utils::set_clantag("netflix&c ", "[redacted]"); break;
-		case 10:global_utils::set_clantag("netflix&ch ", "[redacted]"); break;
-		case 11:global_utils::set_clantag("netflix&che ", "[redacted]"); break;
-		case 12:global_utils::set_clantag("netflix&chea ", "[redacted]"); break;
-		case 13:global_utils::set_clantag("netflix&cheat ", "[redacted]"); break;
-		case 14:global_utils::set_clantag("netflix&cheats ", "[redacted]"); break;
-		case 15:global_utils::set_clantag("netflix&cheats ", "[redacted]"); break;
-		case 16:global_utils::set_clantag("netflix&cheat ", "[redacted]"); break;
-		case 17:global_utils::set_clantag("netflix&chea ", "[redacted]"); break;
-		case 18:global_utils::set_clantag("netflix&che ", "[redacted]"); break;
-		case 19:global_utils::set_clantag("netflix&ch ", "[redacted]"); break;
-		case 20:global_utils::set_clantag("netflix&c ", "[redacted]"); break;
-		case 21:global_utils::set_clantag("netflix& ", "[redacted]"); break;
-		case 22:global_utils::set_clantag("netflix ", "[redacted]"); break;
-		case 23:global_utils::set_clantag("netfli ", "[redacted]"); break;
-		case 24:global_utils::set_clantag("netfl ", "[redacted]"); break;
-		case 25:global_utils::set_clantag("netf ", "[redacted]"); break;
-		case 26:global_utils::set_clantag("net ", "[redacted]"); break;
-		case 27:global_utils::set_clantag("ne ", "[redacted]"); break;
-		case 28:global_utils::set_clantag("n ", "[redacted]"); break;
-		case 29:global_utils::set_clantag(" ", "[redacted]"); break;
-		}
+	if (interfaces::global_vars->curtime - oldtime >= 0.5f) {
+		std::string temp = (std::string&)cur_clantag;
+		cur_clantag.erase(0, 1);
+		cur_clantag += temp[0];
+		set_clantag(cur_clantag.c_str(), "impacthack");
+		oldtime = interfaces::global_vars->curtime;
 	}
-	counter++;
 }
 
 void features::miscellaneous::on_create_move(c_usercmd* cmd) {
