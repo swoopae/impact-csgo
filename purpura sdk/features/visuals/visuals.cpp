@@ -105,7 +105,7 @@ void features::visuals::render_weapon(esp_box box, int entity_index) {
 
 	std::transform(weapon_name.begin(), weapon_name.end(), weapon_name.begin(), ::tolower);
 
-	RECT thing = util_get_screen_size(render_manager::fonts::esp_font, weapon_name.c_str());
+	RECT thing = get_text_size(render_manager::fonts::esp_font, weapon_name.c_str());
 
 	int difference = thing.left / 2;
 
@@ -138,7 +138,7 @@ void features::visuals::render_name(esp_box box, int entity_index) {
 
 	final_string = bot + name;
 
-	RECT thing = util_get_screen_size(render_manager::fonts::esp_font, final_string.c_str());
+	RECT thing = get_text_size(render_manager::fonts::esp_font, final_string.c_str());
 
 	int difference = thing.left / 2;
 
