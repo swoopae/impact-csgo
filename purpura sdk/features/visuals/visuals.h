@@ -23,8 +23,7 @@ namespace features {
 		void render_health(esp_box box, int entity_index);
 		void render_armour(esp_box box, int entity_index);
 
-		// this function is incorrectly labeled but i can't fix now, hope i can remember when i get home
-		RECT util_get_screen_size(DWORD font, const char* text, ...) {
+		RECT get_text_size(DWORD font, const char* text, ...) {
 			std::string text_normal = text;
 			std::wstring text_wide = std::wstring(text_normal.begin(), text_normal.end());
 			const wchar_t* final_text = text_wide.c_str();
