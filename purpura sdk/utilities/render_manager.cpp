@@ -58,10 +58,9 @@ void render_manager::horizontal_gradient_rect(int x, int y, int w, int h, color 
 void render_manager::text(const char* text, int x, int y, int font, color color) {
 	std::string text_normal = text;
 	std::wstring text_wide = std::wstring(text_normal.begin(), text_normal.end());
-	const wchar_t* final_text = text_wide.c_str(); 
-	
+
 	interfaces::surface->draw_set_text_color(color.r, color.g, color.b, color.a);
 	interfaces::surface->draw_set_text_font(font);
 	interfaces::surface->draw_set_text_pos(x, y);
-	interfaces::surface->draw_print_text(final_text, wcslen(final_text), FONT_DRAW_DEFAULT);
+	interfaces::surface->draw_print_text(text_wide.c_str(), text_wide.length(), FONT_DRAW_DEFAULT);
 }
