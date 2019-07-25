@@ -43,7 +43,7 @@ void features::miscellaneous::clantag_spam() {
 		std::string temp = (std::string&)cur_clantag;
 		cur_clantag.erase(0, 1);
 		cur_clantag += temp[0];
-		set_clantag(cur_clantag.c_str(), "impacthack");
+		global_utils::set_clantag(cur_clantag.c_str(), "impacthack");
 		oldtime = interfaces::global_vars->curtime;
 	}
 }
